@@ -1,0 +1,33 @@
+#15. 3Sum
+#15 三数之和
+'''
+a+b+c=0
+使用3个指针级i，j，k分别指向abc 首先排序遍历i 即为a ，
+在使用jk分别指向bc 
+计算a+b+c <0 表示b要增大   >0表示c要减小 
+同时要排除数字相同的情况
+'''
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        ans=[]
+        for i in range(len(nums)):
+            if i==0 or nums[i]!=nums[i-1]: #这个地方压迫避免a重复的情况
+                j=i+1#这个地方要避免接下来出现b重复a
+                k=len(nums)-1
+                while j<k:
+                    s=nums[i]+nums[j]+nums[k]
+                    if s==0:
+                        ans.append([nums[i],nums[j],nums[k]])
+                        j+=1
+                        k-=1
+                        while j<k and nums[j]==nums[j-1]:
+                            j+=1
+                        while j<k and nums[k]==nums[k+1]:
+                            k-=1
+                    elif s>0:
+                        k-=1
+                    elif s<0:
+                        j+=1
+                    
+        return ans
