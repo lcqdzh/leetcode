@@ -1,0 +1,20 @@
+#12. Integer to Roman
+#12 旋转罗马数字
+class Solution:
+    def intToRoman(self, num: int) -> str:
+        m=[
+            ['','M','MM','MMM'],
+            ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM'],
+            ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],
+            ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX']
+        ]
+        
+        d=[1000,100,10,1]
+        
+        ans=""
+        
+        for k,v  in enumerate(d):
+            ans+=m[k][int(num/v)]
+            num=num%v
+        
+        return ans
