@@ -1,0 +1,30 @@
+#17. Letter Combinations of a Phone Number
+#17. 电话号码的字母组合
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        if not digits:
+            return []
+
+        dic = {
+            "2": "abc",
+            "3": "def",
+            "4": "ghi",
+            "5": "jkl",
+            "6": "mno",
+            "7": "pqrs",
+            "8": "tuv",
+            "9": "wxyz"
+        }
+
+        ans = [""]
+
+        for i in digits:
+            temp = []
+            if i in dic.keys():
+                for j in dic[i]:
+                    for k in ans:
+                        temp.append(k + j)
+                ans = temp
+
+        return ans
+        
