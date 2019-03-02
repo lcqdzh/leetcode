@@ -1,0 +1,24 @@
+#16. 3Sum Closest
+#16. 最接近的三数之和
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        nums.sort()
+        ans=sum(nums[:3])
+        for i in range(len(nums)):
+                j=i+1#这个地方要避免接下来出现b重复a
+                k=len(nums)-1
+                while j<k:
+                    print(i,j,k)
+                    s=nums[i]+nums[j]+nums[k]
+                    if abs(s-target)<abs(ans-target):
+                        ans=s
+                    if s==target:
+                        return s 
+                    elif s<target:
+                        j+=1
+                    elif s>target:
+                        k-=1
+                    
+        return ans
+nums=[-1,2,1,-4]
+Solution().threeSumClosest(nums,1)
