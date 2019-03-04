@@ -1,0 +1,30 @@
+#24. Swap Nodes in Pairs
+#24. 两两交换链表中的节点
+#思路 p上一个交换中的后一个  i 要交换的左边  j要交换的右边 交换ij后 p再指向交换后的右边
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def swapPairs(self, head: ListNode) -> ListNode:
+        
+        if head==None:
+            return head
+        p=ListNode(0)
+        p.next=head
+        ans=p
+        while p.next and p.next.next:
+            i=p.next
+            j=i.next
+            p.next=j
+            temp=j.next
+            i.next=temp
+            j.next=i
+            p=i
+                  
+        return ans.next
+        
+        
