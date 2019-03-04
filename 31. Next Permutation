@@ -1,0 +1,38 @@
+#31. Next Permutation
+#31. 下一个排列
+#思路在代码注释中
+#j肯定在i右边：因为i是第一个不升反降的数 说明 i肯定要小于i+1，在寻找j时，肯定存在i+1大于i，
+class Solution:
+    def nextPermutation(self, nums) :
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        if len(nums)<=1:
+            return nums
+        i=len(nums)-1
+        while i>=0:#倒叙遍历得到的第一个不升反降的数
+            print('i=',i)
+            if nums[i]<=nums[i-1]:
+                i-=1
+            else:
+                break
+        
+        if i-1>=0:
+            i-=1 #表示倒叙遍历得到的第一个不升反降的数i
+            j=len(nums)-1
+            while nums[j] <= nums[i]:#倒叙查找比i大的第一个数j    
+                    j -= 1
+            nums[i],nums[j]=nums[j],nums[i]#i与j交换位置
+            print(nums)
+            print(i)
+            nums[i+1:].sort()#i后面的内容要排序
+            numss=nums[i+1:]
+            numss.sort()
+            nums[i+1:]=numss
+            print('s',nums)
+        else:
+            nums.sort()
+nums=[1,2,3]
+nums=[2,3,1]
+Solution().nextPermutation(nums)
+print(nums)
