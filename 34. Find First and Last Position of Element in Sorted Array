@@ -1,6 +1,6 @@
 #34. Find First and Last Position of Element in Sorted Array
 #34. 在排序数组中查找元素的第一个和最后一个位置
-#二分法查找 找到目标后分别向左右查找 第1个和最后一个
+#思路：二分法查找 找到目标后分别向左右查找 第1个和最后一个
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         if len(nums) == 0:
