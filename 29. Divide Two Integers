@@ -1,0 +1,27 @@
+#29. Divide Two Integers
+#29. 两数相除
+class Solution:
+    def divide(self, dividend: int, divisor: int) -> int:
+        if dividend == 0: 
+            return 0
+        if divisor == 0: 
+            return
+        if((dividend < 0) ^ (divisor < 0)):
+            sign=-1
+        else:
+            sign=1
+        
+        dividend = abs(dividend)
+        divisor = abs(divisor)
+        ans=0
+        temp=0
+        for i in range(32,-1,-1):#枚举32到0之间的数
+            if temp+(divisor<<i) <= dividend:
+                temp+=divisor<<i
+                ans|=1<<i
+        
+        ans*=sign
+        if ans < -(2 ** 31) or ans > 2 ** 31 - 1:
+            return 2 ** 31 - 1
+        else:
+            return ans
