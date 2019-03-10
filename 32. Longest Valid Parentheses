@@ -1,0 +1,23 @@
+#32. Longest Valid Parentheses
+#32. 最长有效括号
+#思路：参考了讨论区的代码，主要方法是遍历一遍字符串，把能够匹配的括号对应的下标的数组数置为1 其余为0，最后计算连续的最长的1的长度就行
+class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        st, b = [], [0]*len(s)
+        for i, val in enumerate(s):
+            #print(val)
+            if val == '(':
+                st.append(i)
+            elif st:
+                b[st.pop()], b[i] = 1, 1
+                #print(b)
+
+        c, mc = 0, 0
+        for i in b:
+            if i:
+                c += 1
+            else:
+                mc = max(c, mc)
+                c = 0
+
+        return max(c, mc)
