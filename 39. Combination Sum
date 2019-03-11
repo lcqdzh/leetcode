@@ -1,0 +1,20 @@
+#39. Combination Sum
+#39. 组合总和
+#思路：参考了讨论区的代码，使用深度优先搜索，对于candidates中的每个i，如果target=i 即为所求，如果不相等 则target更新，递归求target-i的数
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        def dfs(results,result,candidates,target,level):
+            if target==0:
+                results.append(list(result))
+                return 
+            elif target>0:
+                for i in range(level,len(candidates)):
+                    result.append(candidates[i])
+                    dfs(results,result,candidates,target-candidates[i],i)
+                    result.pop()
+                    
+        results=[]
+        dfs(results,[],candidates,target,0)
+        return results
+            
+        
