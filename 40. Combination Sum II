@@ -1,0 +1,25 @@
+#40. Combination Sum II
+#40. 组合总和 II
+#思路：在39题的基础上增加了去重操作，首先要对数组进行排序，启迪在准备递归之前查看当前i指向的数字与i-1数字是否相同，
+#不同则递归，相同则查看下一个i
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+    
+        def dfs(results,result,candidates,target,level):
+            if target==0:
+                results.append(list(result))
+                return 
+            elif target>0:
+                for i in range(level,len(candidates)):
+                    if i>level and candidates[i]==candidates[i-1]:
+                        continue
+                   
+                    result.append(candidates[i])
+                    dfs(results,result,candidates,target-candidates[i],i+1)
+                    result.pop()
+                    
+        results=[]
+        candidates.sort()
+        dfs(results,[],candidates,target,0)
+        return results
+        
