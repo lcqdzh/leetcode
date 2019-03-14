@@ -1,0 +1,16 @@
+#46. Permutations
+#46. 全排列
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        if nums == None:
+            return []
+        if len(nums)==1:
+            return [nums]
+        ans=[]
+        for i in nums:
+            ys=nums+[]
+            ys.remove(i)
+            for j in self.permute(ys):
+                ans.append([i]+j)
+        return ans
+        
